@@ -45,7 +45,7 @@ final class DataCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        textField.addTarget(self, action: #selector(didEndEditing(_:)), for: .editingDidEnd)
     }
     
     func setupPicker(pickerType: PickerType) {
@@ -76,6 +76,15 @@ extension DataCell {
     
     @objc func cancelPicker() {
         textField.endEditing(true)
+    }
+    
+    @objc func didEndEditing(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        if text.count <= 2 {
+            delegate?.passInputText(text: text)
+        } else {
+            delegate?.numberSelected(text: text)
+        }
     }
 }
 
@@ -114,14 +123,13 @@ extension DataCell: UIPickerViewDelegate {
         default:()
         }
         textField.text = numberItems[row]
-        delegate?.numberSelected(text: textField.text ?? "")
+//        delegate?.numberSelected(text: textField.text ?? "")
         textField.endEditing(true)
     }
 }
 
 extension DataCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        delegate?.passInputText(text: textField.text ?? "")
         textField.endEditing(true)
         return true
     }

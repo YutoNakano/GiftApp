@@ -15,7 +15,7 @@ enum PickerType {
 
 protocol DataCellDelegate: class {
     func passInputText(text: String)
-    func numberSelected(text: String)
+    func numberSelected(text: String, pickerNumber: Int)
 }
 
 final class DataCell: UITableViewCell {
@@ -45,7 +45,7 @@ final class DataCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        textField.addTarget(self, action: #selector(didEndEditing(_:)), for: .editingDidEnd)
+//        textField.addTarget(self, action: #selector(didEndEditing(_:)), for: .editingDidEnd)
     }
     
     func setupPicker(pickerType: PickerType) {
@@ -78,14 +78,14 @@ extension DataCell {
         textField.endEditing(true)
     }
     
-    @objc func didEndEditing(_ sender: UITextField) {
-        guard let text = sender.text else { return }
-        if text.count <= 2 {
-            delegate?.passInputText(text: text)
-        } else {
-            delegate?.numberSelected(text: text)
-        }
-    }
+//    @objc func didEndEditing(_ sender: UITextField) {
+//        guard let text = sender.text else { return }
+//        if text.count <= 2 {
+//            delegate?.passInputText(text: text)
+//        } else {
+//            delegate?.numberSelected(text: text, pickerNumber: <#Int#>)
+//        }
+//    }
 }
 
 extension DataCell: UIPickerViewDataSource {

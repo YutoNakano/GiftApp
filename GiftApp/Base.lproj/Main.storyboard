@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GiftApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sy6-Yj-1bZ">
+                                <rect key="frame" x="0.0" y="814" width="414" height="48"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="haa-Uu-phV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="完了">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="endButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Rm-qK-PwB"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zao-7g-U3d">
+                                <rect key="frame" x="0.0" y="172" width="414" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="IDS-2i-Y7X"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="QsU-pi-wGB"/>
+                                </connections>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_image" translatesAutoresizingMaskIntoConstraints="NO" id="b45-Ko-Kaa">
+                                <rect key="frame" x="0.0" y="44" width="414" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="50x-em-LL9"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOv-xl-soq">
+                                <rect key="frame" x="15" y="664" width="384" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tX5-Xf-2do">
+                                <rect key="frame" x="15" y="693" width="384" height="106"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="cjp-Z6-Cz2"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="7aF-6Y-BiG"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b45-Ko-Kaa" secondAttribute="trailing" id="5IZ-E0-g7N"/>
+                            <constraint firstItem="Zao-7g-U3d" firstAttribute="top" secondItem="b45-Ko-Kaa" secondAttribute="bottom" id="7ht-MK-LUl"/>
+                            <constraint firstItem="EOv-xl-soq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="F9h-7K-TIf"/>
+                            <constraint firstItem="Zao-7g-U3d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FKh-Yn-vLm"/>
+                            <constraint firstItem="tX5-Xf-2do" firstAttribute="top" secondItem="EOv-xl-soq" secondAttribute="bottom" constant="8" id="FVI-1l-Kxn"/>
+                            <constraint firstItem="EOv-xl-soq" firstAttribute="top" secondItem="Zao-7g-U3d" secondAttribute="bottom" id="Osf-PR-0ws"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sy6-Yj-1bZ" secondAttribute="trailing" id="Ou9-61-gEH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sy6-Yj-1bZ" secondAttribute="bottom" id="PL8-SN-xLM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tX5-Xf-2do" secondAttribute="trailing" constant="15" id="Vrk-Iv-NC0"/>
+                            <constraint firstItem="sy6-Yj-1bZ" firstAttribute="top" secondItem="tX5-Xf-2do" secondAttribute="bottom" constant="15" id="Yzb-xp-4q9"/>
+                            <constraint firstItem="sy6-Yj-1bZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dKt-94-wM9"/>
+                            <constraint firstItem="b45-Ko-Kaa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jFg-Rg-BLK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EOv-xl-soq" secondAttribute="trailing" constant="15" id="kMU-6z-74t"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zao-7g-U3d" secondAttribute="trailing" id="lf3-wC-YaK"/>
+                            <constraint firstItem="tX5-Xf-2do" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="s0S-zC-61T"/>
+                            <constraint firstItem="b45-Ko-Kaa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="x9k-62-ntv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="b45-Ko-Kaa" id="GqK-Zz-JoQ"/>
+                        <outlet property="tableView" destination="Zao-7g-U3d" id="7hP-Tg-c30"/>
+                        <outlet property="textView" destination="tX5-Xf-2do" id="F70-En-mBj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="empty_image" width="257.33334350585938" height="131.33332824707031"/>
+    </resources>
+</document>

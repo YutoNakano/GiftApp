@@ -18,32 +18,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="439" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLI-Ei-Gep">
-                        <rect key="frame" x="35" y="69.5" width="369" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQj-Xh-4Ud">
-                        <rect key="frame" x="15" y="15" width="200" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="200" id="J6z-cL-Rhv"/>
-                        </constraints>
+                        <rect key="frame" x="15" y="15" width="409" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M7U-sJ-wID">
+                        <rect key="frame" x="35" y="41" width="369" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="QTm-fb-Mt6"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yQj-Xh-4Ud" firstAttribute="leading" secondItem="njU-Av-zuw" secondAttribute="leading" constant="15" id="9zy-gc-FkS"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="oLI-Ei-Gep" secondAttribute="trailing" constant="15" id="Vch-V0-dX4"/>
-                    <constraint firstItem="oLI-Ei-Gep" firstAttribute="leading" secondItem="njU-Av-zuw" secondAttribute="leadingMargin" constant="15" id="pQp-E6-BVw"/>
-                    <constraint firstItem="yQj-Xh-4Ud" firstAttribute="top" secondItem="njU-Av-zuw" secondAttribute="top" constant="15" id="sLC-X1-pfa"/>
-                    <constraint firstItem="oLI-Ei-Gep" firstAttribute="centerY" secondItem="njU-Av-zuw" secondAttribute="centerY" id="zht-5E-pVR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="M7U-sJ-wID" secondAttribute="trailing" constant="15" id="D3w-R2-TMk"/>
+                    <constraint firstAttribute="trailing" secondItem="yQj-Xh-4Ud" secondAttribute="trailing" constant="15" id="DJv-jP-t3N"/>
+                    <constraint firstItem="yQj-Xh-4Ud" firstAttribute="leading" secondItem="njU-Av-zuw" secondAttribute="leading" constant="15" id="Edg-CL-j58"/>
+                    <constraint firstItem="M7U-sJ-wID" firstAttribute="leading" secondItem="njU-Av-zuw" secondAttribute="leadingMargin" constant="15" id="KxZ-HT-liN"/>
+                    <constraint firstItem="M7U-sJ-wID" firstAttribute="top" secondItem="yQj-Xh-4Ud" secondAttribute="bottom" constant="5" id="hgS-pv-ONG"/>
+                    <constraint firstItem="yQj-Xh-4Ud" firstAttribute="top" secondItem="njU-Av-zuw" secondAttribute="top" constant="15" id="tDm-CJ-r3A"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentLabel" destination="oLI-Ei-Gep" id="NKE-OX-634"/>
+                <outlet property="textField" destination="M7U-sJ-wID" id="V4d-lJ-cq9"/>
                 <outlet property="titleLabel" destination="yQj-Xh-4Ud" id="r2P-aZ-Fic"/>
             </connections>
             <point key="canvasLocation" x="155.79710144927537" y="152.67857142857142"/>

@@ -13,10 +13,10 @@ class ViewController: UIViewController {
     var postImage: UIImage?
     var postText: String? = "このアプリめっちゃいいよ!\nぜひダウンロードしてみてね!!"
     
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textView: UITextView!
-    
     
     let titleItems = [
         "アプリのURL",
@@ -58,7 +58,6 @@ class ViewController: UIViewController {
         
         present(activityVC, animated: true, completion: nil)
     }
-    
 }
 
 extension ViewController: UITextViewDelegate {
@@ -73,6 +72,14 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? DataCell else { fatalError() }
+        cell.delegate = self
+        switch indexPath.row {
+        case 0: cell.setupInputText()
+        case 1: cell.setupPicker(pickerType: PickerType.sentence)
+        case 2: cell.setupPicker(pickerType: PickerType.number)
+        case 3: cell.setupPicker(pickerType: PickerType.number)
+        default:()
+        }
         cell.titleLabel.text = titleItems[indexPath.row]
         return cell
     }
@@ -83,7 +90,9 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+//        guard let cell = tableView.cellForRow(at: indexPath) as? DataCell? else { fatalError() }
+
+
     }
 }
 
@@ -109,7 +118,18 @@ extension ViewController {
         
     }
     
+    
     @objc func commitButtonTapped() {
-        self.view.endEditing(true)
+        
+    }
+}
+
+extension ViewController: DataCellDelegate {
+    func passInputText(text: String) {
+        print(text)
+    }
+    
+    func numberSelected(text: String) {
+        print(text)
     }
 }

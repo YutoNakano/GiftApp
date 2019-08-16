@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     var postText3: String?
     var commentText: String?
     var isCommentTextView = true
+
     
     
     // 最後にcompactMapでnilを除外
@@ -41,11 +42,12 @@ class ViewController: UIViewController {
         setup()
         setupTextView()
         setupImageView()
+        configureObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        configureObserver()
+//        configureObserver()
     }
     
     func setup() {

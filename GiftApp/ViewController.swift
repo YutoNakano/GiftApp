@@ -36,7 +36,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        postImage = UIImage(named: "sample")
         // Do any additional setup after loading the view.
         setup()
         setupTextView()
@@ -72,10 +71,18 @@ class ViewController: UIViewController {
         }
         
         let postText = textArray.map { $0 + "\n" }.joined()
-        guard let image = postImage, let url = postURL else { return }
-        activityItems.append([image, url, postText])
+        activityItems.append(postImage as Any)
+        activityItems.append(postURL as Any)
+        activityItems.append(postText)
+        
+//        let items = activityItems.compactMap { $0 }
+//
+        print(activityItems)
 
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        
+        resetData()
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             activityVC.popoverPresentationController?.sourceView = view
@@ -86,8 +93,6 @@ class ViewController: UIViewController {
             )
             activityVC.popoverPresentationController?.permittedArrowDirections = .down
         }
-        
-        activityVC.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
         
         present(activityVC, animated: true, completion: nil)
     }
@@ -183,6 +188,10 @@ extension ViewController {
         default: ()
         }
     }
+    
+    func resetData() {
+        activityItems.removeAll()
+    }
 }
 
 extension ViewController: DataCellDelegate {
@@ -201,6 +210,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.image = image
+        postImage = image
         dismiss(animated: true, completion: nil)
     }
     

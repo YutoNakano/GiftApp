@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zao-7g-U3d">
-                                <rect key="frame" x="0.0" y="172" width="414" height="492"/>
+                                <rect key="frame" x="0.0" y="155" width="414" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="IDS-2i-Y7X"/>
@@ -41,9 +41,9 @@
                                 </connections>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_image" translatesAutoresizingMaskIntoConstraints="NO" id="b45-Ko-Kaa">
-                                <rect key="frame" x="0.0" y="44" width="414" height="128"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="50x-em-LL9"/>
+                                    <constraint firstAttribute="height" constant="155" id="50x-em-LL9"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOv-xl-soq">
@@ -82,7 +82,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EOv-xl-soq" secondAttribute="trailing" constant="15" id="kMU-6z-74t"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zao-7g-U3d" secondAttribute="trailing" id="lf3-wC-YaK"/>
                             <constraint firstItem="tX5-Xf-2do" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="s0S-zC-61T"/>
-                            <constraint firstItem="b45-Ko-Kaa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="x9k-62-ntv"/>
+                            <constraint firstItem="b45-Ko-Kaa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="x9k-62-ntv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

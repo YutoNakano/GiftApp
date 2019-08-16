@@ -17,18 +17,19 @@ class ViewController: UIViewController {
     
     var activityItems: Array<Any> = []
     var postImage: UIImage?
-    var postURL: URL?
+    var postURLString: String?
     var postText1: String?
     var postText2: String?
     var postText3: String?
     var commentText: String?
+    var isCommentTextView = true
     
     
     // 最後にcompactMapでnilを除外
     var textArray: Array<String> = []
     
     let titleItems = [
-        "アプリのURL",
+        "アプリのURL(AppStoreのリンクをコピー)",
         "なぜ使ってもらいたい?",
         "便利度",
         "革命度"
@@ -40,6 +41,11 @@ class ViewController: UIViewController {
         setup()
         setupTextView()
         setupImageView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        configureObserver()
     }
     
     func setup() {
@@ -76,7 +82,7 @@ class ViewController: UIViewController {
             textArray.removeAll()
         }
         if let text1 = postText1 {
-            let sentence1 = "なぜ使ってもらいたい?: \(text1)\n"
+            let sentence1 = "このアプリ\(text1)\n"
             textArray.append(sentence1)
         }
         
@@ -102,15 +108,10 @@ class ViewController: UIViewController {
         }
         let postText = textArray.map { $0 }.joined()
         activityItems.append(postImage as Any)
-        activityItems.append(postURL as Any)
+        activityItems.append(postURLString as Any)
         activityItems.append(postText)
     }
 }
-
-extension ViewController: UITextViewDelegate {
-    
-}
-
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,6 +122,7 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? DataCell else { fatalError() }
         cell.delegate = self
         cell.textField.tag = indexPath.row
+        cell.textField.addTarget(self, action: #selector(beginEditing(_:)), for: .editingDidBegin)
         cell.textField.addTarget(self, action: #selector(didEndEditing(_:)), for: .editingDidEnd)
         switch indexPath.row {
         case 0: cell.setupInputText()
@@ -162,7 +164,7 @@ extension ViewController {
         toolBar.items = [spacer, commitButton]
         // textViewのキーボードにツールバーを設定
         textView.inputAccessoryView = toolBar
-        
+        textView.backgroundColor = UIColor.appColor(.lightGray, alpha: 0.1)
     }
     
     func setupImageView() {
@@ -182,12 +184,16 @@ extension ViewController {
         commentText = textView.text
     }
     
+    @objc func beginEditing(_ sender: UITextField) {
+        isCommentTextView = false
+    }
+    
     @objc func didEndEditing(_ sender: UITextField) {
         // マジックナンバーをenumにする
         guard let text = sender.text else { return }
         switch sender.tag {
         case 0:
-            postURL = URL(string: text)
+            postURLString = text
         case 1:
             postText1 = text
         case 2:
@@ -202,7 +208,7 @@ extension ViewController {
 extension ViewController: DataCellDelegate {
     func passInputText(text: String) {
         print(text)
-        postURL = URL(string: text)
+        postURLString = text
     }
     
     func numberSelected(text: String, pickerNumber: Int) {
@@ -216,11 +222,43 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.image = image
         postImage = image
-        
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension ViewController: UITextViewDelegate {
+    
+}
+
+extension ViewController {
+    // keyboard
+    func configureObserver() {
+        let notification = NotificationCenter.default
+        notification.addObserver(self, selector: #selector(keyboardWillShow(_:)),
+                                 name: UIResponder.keyboardWillShowNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(_:)),
+                                 name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification?) {
+        guard isCommentTextView else { return isCommentTextView.toggle() }
+        guard let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+        UIView.animate(withDuration: duration) {
+            let transform = CGAffineTransform(translationX: 0, y: -(rect.size.height))
+            self.view.transform = transform
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification?) {
+        guard let duration = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? TimeInterval else { return }
+        UIView.animate(withDuration: duration) {
+            self.view.transform = CGAffineTransform.identity
+        }
+    }
+
 }

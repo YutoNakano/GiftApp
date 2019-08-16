@@ -24,6 +24,7 @@ final class DataCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     
     let numberItems = [
+        "-",
         "1",
         "2",
         "3",
@@ -32,6 +33,7 @@ final class DataCell: UITableViewCell {
     ]
     
     let sentencesItems = [
+        "-",
         "あなたに便利そう",
         "一緒に使いたい",
         "なんとなく"
@@ -53,6 +55,7 @@ final class DataCell: UITableViewCell {
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.showsSelectionIndicator = true
+        pickerView.selectedRow(inComponent: 0)
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePicker))
@@ -77,15 +80,6 @@ extension DataCell {
     @objc func cancelPicker() {
         textField.endEditing(true)
     }
-    
-//    @objc func didEndEditing(_ sender: UITextField) {
-//        guard let text = sender.text else { return }
-//        if text.count <= 2 {
-//            delegate?.passInputText(text: text)
-//        } else {
-//            delegate?.numberSelected(text: text, pickerNumber: <#Int#>)
-//        }
-//    }
 }
 
 extension DataCell: UIPickerViewDataSource {

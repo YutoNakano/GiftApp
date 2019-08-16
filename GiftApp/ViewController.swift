@@ -50,39 +50,13 @@ class ViewController: UIViewController {
 
     @IBAction func endButtonTapped(_ sender: Any) {
         
-        if let text1 = postText1 {
-            let sentence1 = "なぜ使ってもらいたい?: \(text1)"
-            textArray.append(sentence1)
-        }
+        appendTextArray()
         
-        if let text2 = postText2 {
-            let sentence2 = "便利度: \(text2)"
-            textArray.append(sentence2)
-        }
-        
-        if let text3 = postText3 {
-            let sentence3 = "革命度: \(text3)"
-            textArray.append(sentence3)
-        }
-        
-        if let comment = commentText {
-            let commenSentence = "コメント: \(comment)"
-            textArray.append(commenSentence)
-        }
-        
-        let postText = textArray.map { $0 + "\n" }.joined()
-        activityItems.append(postImage as Any)
-        activityItems.append(postURL as Any)
-        activityItems.append(postText)
-        
-//        let items = activityItems.compactMap { $0 }
-//
+        appendActivityItems()
+
         print(activityItems)
 
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        
-        
-        resetData()
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             activityVC.popoverPresentationController?.sourceView = view
@@ -95,6 +69,41 @@ class ViewController: UIViewController {
         }
         
         present(activityVC, animated: true, completion: nil)
+    }
+    
+    func appendTextArray() {
+        if !textArray.isEmpty {
+            textArray.removeAll()
+        }
+        if let text1 = postText1 {
+            let sentence1 = "なぜ使ってもらいたい?: \(text1)\n"
+            textArray.append(sentence1)
+        }
+        
+        if let text2 = postText2 {
+            let sentence2 = "便利度: \(text2)\n"
+            textArray.append(sentence2)
+        }
+        
+        if let text3 = postText3 {
+            let sentence3 = "革命度: \(text3)\n"
+            textArray.append(sentence3)
+        }
+        
+        if let comment = commentText {
+            let commenSentence = "コメント: \(comment)"
+            textArray.append(commenSentence)
+        }
+    }
+    
+    func appendActivityItems() {
+        if !activityItems.isEmpty {
+            activityItems.removeAll()
+        }
+        let postText = textArray.map { $0 }.joined()
+        activityItems.append(postImage as Any)
+        activityItems.append(postURL as Any)
+        activityItems.append(postText)
     }
 }
 
@@ -188,10 +197,6 @@ extension ViewController {
         default: ()
         }
     }
-    
-    func resetData() {
-        activityItems.removeAll()
-    }
 }
 
 extension ViewController: DataCellDelegate {
@@ -211,6 +216,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.image = image
         postImage = image
+        
         dismiss(animated: true, completion: nil)
     }
     
